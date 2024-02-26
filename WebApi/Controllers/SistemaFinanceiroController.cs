@@ -1,6 +1,7 @@
 ﻿using Domain.Interfaces.InterfaceServicos;
 using Domain.Interfaces.ISistemaFinanceiro;
 using Entities.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SistemaFinanceiroController : ControllerBase
     {
         private readonly InterfaceSistemaFinanceiro _InterfaceSistemaFinanceiro;
@@ -20,9 +22,9 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpGet("/api/ListaSistemaUsuario")]
+        [HttpGet("/api/ListaSistemasUsuario")]
         [Produces("application/json")]
-        public async Task<object> ListaSistemaUsuario(string emailUsuario)
+        public async Task<object> ListaSistemasUsuario(string emailUsuario)
         {
             return await _InterfaceSistemaFinanceiro.ListaSistemasUsuario(emailUsuario);
         }
